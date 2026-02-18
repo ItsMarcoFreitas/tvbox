@@ -558,10 +558,14 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="pricing-card">
-                        <h3 style="font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">Plano Smart</h3>
+                        <h3 style="font-size: 2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px;">Planos SmartPLAY</h3>
+                        <div style="font-size: 1.2rem; color: #ccc; margin-bottom: 10px;">A partir de</div>
                         <div class="price">
-                            R$ 20
+                            R$ 30
                             <span style="font-size: 1.2rem; color: #ccc;">/mês</span>
+                        </div>
+                        <div style="background: linear-gradient(45deg, #10b981, #059669); color: white; padding: 15px; border-radius: 10px; margin: 20px 0; font-weight: 600;">
+                            <i class="fas fa-gift"></i> Primeiro mês por apenas R$ 20
                         </div>
                         <ul class="list-unstyled" style="font-size: 1.2rem; margin-bottom: 30px;">
                             <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Acesso total a todos os canais</li>
@@ -570,9 +574,34 @@
                             <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Suporte 24/7</li>
                             <li><i class="fas fa-check-circle" style="color: #10b981;"></i> Teste grátis</li>
                         </ul>
-                        <a href="#contato" class="btn btn-lg w-100" style="background: linear-gradient(45deg, #ff6b35, #ff8c42); color: white; font-weight: 900; text-transform: uppercase; padding: 15px; border-radius: 10px; border: none;">
-                            Assinar Agora
-                        </a>
+                        <div style="margin-top: 30px; position: relative; z-index: 9999;">
+                            <a href="https://wa.me/555192387622?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20planos%20dispon%C3%ADveis." 
+                               target="_blank" 
+                               style="display: block; 
+                                      position: relative; 
+                                      z-index: 9999; 
+                                      width: 100%; 
+                                      background: linear-gradient(45deg, #ff6b35, #ff8c42); 
+                                      color: white; 
+                                      font-weight: 900; 
+                                      font-size: 1.2rem; 
+                                      text-transform: uppercase; 
+                                      padding: 18px 20px; 
+                                      border-radius: 10px; 
+                                      border: none; 
+                                      cursor: pointer; 
+                                      text-decoration: none; 
+                                      text-align: center; 
+                                      transition: all 0.3s ease;
+                                      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+                                      pointer-events: auto !important;
+                                      user-select: none !important;
+                                      -webkit-tap-highlight-color: transparent !important;"
+                               onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 53, 0.6)'"
+                               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 53, 0.4)'">
+                                ASSINAR AGORA
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -602,12 +631,12 @@
                                 <div><i class="fas fa-check-circle" style="color: #10b981;"></i> Sem necessidade de cartão</div>
                             </div>
                         </div>
-                        <a href="https://wa.me/555192387622?text=Quero%20solicitar%20o%20teste%20gr%C3%A1tis!" target="_blank" class="whatsapp-button">
+                        <a href="https://wa.me/555192387622?text=Vim%20pelo site%20e%20quero%20solicitar%20o%20teste%20gr%C3%A1tis!" target="_blank" class="whatsapp-button" style="display: inline-block; width: 100%; text-align: center; text-decoration: none;">
                             <i class="fab fa-whatsapp"></i>
                             SOLICITAR TESTE GRÁTIS AGORA
                         </a>
                         <p style="margin-top: 30px; color: #ffd700; font-size: 1.2rem;">
-                            <i class="fas fa-headset"></i> Atendimento Imediato 24/7
+                            <i class="fas fa-headset"></i> Atendimento Online via Whatsapp
                         </p>
                     </div>
                 </div>
@@ -624,43 +653,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe feature cards and pricing cards
-        document.querySelectorAll('.feature-card, .pricing-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
