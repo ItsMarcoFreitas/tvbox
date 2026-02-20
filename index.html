@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartPLAY PROVEDOR IPTV - Melhor IPTV do Brasil</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #ff6b35;
+        --secondary-color: #1e3a8a;
+        --accent-color: #10b981;
+        --dark-color: #0f172a;
+        --light-bg: #1a1a2e;
+        --card-bg: #16213e;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #0f0f0f;
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      /* Animated Background */
+      .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #ff6b35, #1e3a8a, #10b981, #ff6b35);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+        z-index: -2;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
+        z-index: -1;
+      }
+
+      .hero-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+          url("images/fundohero.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo {
+        font-size: 4rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #ff6b35, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        margin-bottom: 30px;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
+        }
+        to {
+          filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.8));
+        }
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #fff, #ff6b35);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+        color: #ffd700;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .cta-button {
+        background: linear-gradient(45deg, #ff6b35, #ff8c42);
+        color: white;
+        padding: 25px 50px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
+        text-decoration: none;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 107, 53, 0.8);
+        color: white;
+      }
+
+      .features-section {
+        padding: 100px 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.9),
+          rgba(26, 26, 46, 0.9)
+        );
+      }
+
+      .section-title {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 60px;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #ff6b35, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .feature-card {
+        background: linear-gradient(
+          135deg,
+          rgba(22, 33, 62, 0.9),
+          rgba(30, 58, 138, 0.9)
+        );
+        border: 2px solid #ff6b35;
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        background: rgba(22, 33, 62, 1);
+        box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+      }
+
+      .feature-icon {
+        font-size: 4rem;
+        color: #ffd700;
+        margin-bottom: 25px;
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+      }
+
+      .feature-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .feature-description {
+        color: #ccc;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .trial-badge {
+        background: linear-gradient(45deg, #10b981, #059669);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.3rem;
+        display: inline-block;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        animation: pulse-glow 2s ease-in-out infinite;
+        border: 3px solid #ffd700;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          box-shadow:
+            0 0 20px #10b981,
+            0 0 40px #059669;
+          transform: scale(1);
+        }
+        50% {
+          box-shadow:
+            0 0 30px #10b981,
+            0 0 60px #059669;
+          transform: scale(1.05);
+        }
+      }
+
+      .devices-section {
+        padding: 80px 0;
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .devices-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .device-item {
+        text-align: center;
+        padding: 30px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 53, 0.1),
+          rgba(30, 58, 138, 0.1)
+        );
+        border: 2px solid #ff6b35;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .device-item:hover {
+        transform: translateY(-10px);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 53, 0.2),
+          rgba(30, 58, 138, 0.2)
+        );
+        box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+      }
+
+      .device-icon {
+        font-size: 3.5rem;
+        color: #ffd700;
+        margin-bottom: 20px;
+      }
+
+      .device-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #fff;
+        text-transform: uppercase;
+      }
+
+      .advertisement-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        border-color: #ffd700;
+      }
+
+      .advertisement-card img {
+        transition: all 0.3s ease;
+      }
+
+      .advertisement-card:hover img {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .pricing-section {
+        padding: 100px 0;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.9),
+          rgba(16, 185, 129, 0.1)
+        );
+      }
+
+      .pricing-card {
+        background: linear-gradient(
+          135deg,
+          rgba(22, 33, 62, 0.95),
+          rgba(30, 58, 138, 0.95)
+        );
+        border: 3px solid #ffd700;
+        border-radius: 25px;
+        padding: 50px;
+        text-align: center;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .pricing-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 215, 0, 0.1),
+          transparent
+        );
+        animation: rotate 3s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-20px) scale(1.05);
+        box-shadow: 0 30px 60px rgba(255, 215, 0, 0.3);
+      }
+
+      .price {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #ffd700;
+        margin: 30px 0;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      }
+
+      .contact-section {
+        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 0, 0, 0.9),
+          rgba(255, 107, 53, 0.1)
+        );
+        position: relative;
+      }
+
+      .contact-box {
+        background: linear-gradient(
+          135deg,
+          rgba(22, 33, 62, 0.95),
+          rgba(30, 58, 138, 0.95)
+        );
+        border: 3px solid #ff6b35;
+        border-radius: 30px;
+        padding: 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #ff6b35, #ffd700, #10b981, #ff6b35);
+        animation: slide 3s linear infinite;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      .whatsapp-button {
+        background: linear-gradient(45deg, #25d366, #128c7e);
+        color: white;
+        padding: 20px 40px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: 3px solid #ffd700;
+      }
+
+      .whatsapp-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(37, 211, 102, 0.5);
+        color: white;
+      }
+
+      .footer {
+        background: #000;
+        color: #666;
+        padding: 40px 0;
+        text-align: center;
+        border-top: 2px solid #ff6b35;
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .logo {
+          font-size: 3rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row hero-content">
+          <div class="col-lg-12 text-center">
+            <div class="logo"><i class="fas fa-play-circle"></i> SmartPLAY</div>
+            <h1 class="hero-title">
+              Quer liberar TODOS os canais, filmes, séries e esportes na sua TV?
+            </h1>
+            <p class="hero-subtitle">A REVOLUÇÃO IPTV DO BRASIL!</p>
+            <div class="trial-badge">
+              <i class="fas fa-clock"></i> TESTE GRÁTIS SEM COMPROMISSO!
+            </div>
+            <br /><br />
+            <a href="#contato" class="cta-button">
+              <i class="fas fa-rocket"></i> QUERO MEU TESTE AGORA!
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title">POR QUE O SMARTPLAY É O MELHOR?</h2>
+          </div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <h3 class="feature-title">COMPATIBILIDADE TOTAL</h3>
+            <p class="feature-description">
+              <i class="fas fa-check-circle" style="color: #10b981"></i> Smart
+              TV, TV Box e Celular<br />
+              <i class="fas fa-check-circle" style="color: #10b981"></i>
+              Instalação em 2 minutos<br />
+              <i class="fas fa-check-circle" style="color: #10b981"></i> Suporte
+              para todos os dispositivos
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-signal"></i>
+            </div>
+            <h3 class="feature-title">QUALIDADE EXTREMA</h3>
+            <p class="feature-description">
+              <i class="fas fa-check-circle" style="color: #10b981"></i> ZERO
+              TRAVAMENTOS<br />
+              <i class="fas fa-check-circle" style="color: #10b981"></i> Full HD
+              e 4K<br />
+              <i class="fas fa-check-circle" style="color: #10b981"></i>
+              Servidores ultra rápidos
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-film"></i>
+            </div>
+            <h3 class="feature-title">CONTEÚDO ILIMITADO</h3>
+            <p class="feature-description">
+              <i class="fas fa-check-circle" style="color: #10b981"></i> 15.000+
+              canais ao vivo<br />
+              <i class="fas fa-check-circle" style="color: #10b981"></i> Filmes
+              e séries atualizados<br />
+              <i class="fas fa-check-circle" style="color: #10b981"></i> Todos
+              os esportes e PPVs
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Devices Section -->
+    <section class="devices-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title">ASSISTA ONDE QUISER</h2>
+          </div>
+        </div>
+        <div class="devices-grid">
+          <div class="device-item">
+            <div class="device-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <h5 class="device-name">Smart TV</h5>
+          </div>
+          <div class="device-item">
+            <div class="device-icon">
+              <i class="fas fa-box"></i>
+            </div>
+            <h5 class="device-name">TV Box</h5>
+          </div>
+          <div class="device-item">
+            <div class="device-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h5 class="device-name">Celular</h5>
+          </div>
+          <div class="device-item">
+            <div class="device-icon">
+              <i class="fas fa-tablet-alt"></i>
+            </div>
+            <h5 class="device-name">Tablet</h5>
+          </div>
+          <div class="device-item">
+            <div class="device-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <h5 class="device-name">PC</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title">PREÇO IMBATÍVEL</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="pricing-card">
+              <h3
+                style="
+                  font-size: 2rem;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                  margin-bottom: 20px;
+                "
+              >
+                Planos SmartPLAY
+              </h3>
+              <div style="font-size: 1.2rem; color: #ccc; margin-bottom: 10px">
+                A partir de
+              </div>
+              <div class="price">
+                R$ 30
+                <span style="font-size: 1.2rem; color: #ccc">/mês</span>
+              </div>
+              <div
+                style="
+                  background: linear-gradient(45deg, #10b981, #059669);
+                  color: white;
+                  padding: 15px;
+                  border-radius: 10px;
+                  margin: 20px 0;
+                  font-weight: 600;
+                "
+              >
+                <i class="fas fa-gift"></i> Primeiro mês por apenas R$ 20
+              </div>
+              <ul
+                class="list-unstyled"
+                style="font-size: 1.2rem; margin-bottom: 30px"
+              >
+                <li>
+                  <i class="fas fa-check-circle" style="color: #10b981"></i>
+                  Acesso total a todos os canais
+                </li>
+                <li>
+                  <i class="fas fa-check-circle" style="color: #10b981"></i>
+                  Filmes e séries ilimitados
+                </li>
+                <li>
+                  <i class="fas fa-check-circle" style="color: #10b981"></i>
+                  Todos os esportes ao vivo
+                </li>
+                <li>
+                  <i class="fas fa-check-circle" style="color: #10b981"></i>
+                  Equipe dedicada para dar suporte
+                </li>
+                <li>
+                  <i class="fas fa-check-circle" style="color: #10b981"></i>
+                  Teste grátis
+                </li>
+              </ul>
+              <div style="margin-top: 30px; position: relative; z-index: 9999">
+                <a
+                  href="https://wa.me/555192387622?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20planos%20dispon%C3%ADveis."
+                  target="_blank"
+                  style="
+                    display: block;
+                    position: relative;
+                    z-index: 9999;
+                    width: 100%;
+                    background: linear-gradient(45deg, #ff6b35, #ff8c42);
+                    color: white;
+                    font-weight: 900;
+                    font-size: 1.2rem;
+                    text-transform: uppercase;
+                    padding: 18px 20px;
+                    border-radius: 10px;
+                    border: none;
+                    cursor: pointer;
+                    text-decoration: none;
+                    text-align: center;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+                    pointer-events: auto !important;
+                    user-select: none !important;
+                    -webkit-tap-highlight-color: transparent !important;
+                  "
+                  onmouseover="
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.6)';
+                  "
+                  onmouseout="
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.4)';
+                  "
+                >
+                  ASSINAR AGORA
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advertisement Images Section -->
+    <section
+      class="advertisement-section"
+      style="
+        padding: 80px 0;
+        background: linear-gradient(
+          180deg,
+          rgba(16, 185, 129, 0.1),
+          rgba(0, 0, 0, 0.9)
+        );
+      "
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title">VEJA O QUE ESPERA POR VOCÊ!</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div
+              class="advertisement-card"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(22, 33, 62, 0.95),
+                  rgba(30, 58, 138, 0.95)
+                );
+                border: 2px solid #ff6b35;
+                border-radius: 20px;
+                padding: 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                height: 100%;
+              "
+            >
+              <img
+                src="images/advertisement1.jpeg"
+                alt="SmartPLAY IPTV - Maratona de Diversão"
+                style="
+                  width: 100%;
+                  height: auto;
+                  border-radius: 15px;
+                  margin-bottom: 15px;
+                "
+              />
+              <h4 style="color: #ffd700; font-weight: 700; margin-bottom: 10px">
+                Maratona de Diversão!
+              </h4>
+              <p style="color: #ccc">
+                Filmes, Séries e Canais Ao Vivo Tudo em Um Só Lugar!
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div
+              class="advertisement-card"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(22, 33, 62, 0.95),
+                  rgba(30, 58, 138, 0.95)
+                );
+                border: 2px solid #ff6b35;
+                border-radius: 20px;
+                padding: 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                height: 100%;
+              "
+            >
+              <img
+                src="images/advertisement2.jpeg"
+                alt="SmartPLAY IPTV - TV Ao Vivo"
+                style="
+                  width: 100%;
+                  height: auto;
+                  border-radius: 15px;
+                  margin-bottom: 15px;
+                "
+              />
+              <h4 style="color: #ffd700; font-weight: 700; margin-bottom: 10px">
+                TV Ao Vivo e Esportes!
+              </h4>
+              <p style="color: #ccc">
+                Futebol, Séries, Reality Shows e muito mais!
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div
+              class="advertisement-card"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(22, 33, 62, 0.95),
+                  rgba(30, 58, 138, 0.95)
+                );
+                border: 2px solid #ff6b35;
+                border-radius: 20px;
+                padding: 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                height: 100%;
+              "
+            >
+              <img
+                src="images/advertisement3.jpeg"
+                alt="SmartPLAY IPTV - Conteúdo Premium"
+                style="
+                  width: 100%;
+                  height: auto;
+                  border-radius: 15px;
+                  margin-bottom: 15px;
+                "
+              />
+              <h4 style="color: #ffd700; font-weight: 700; margin-bottom: 10px">
+                Conteúdo Premium
+              </h4>
+              <p style="color: #ccc">Os melhores lançamentos e exclusivos!</p>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 mb-4">
+            <div
+              class="advertisement-card"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(22, 33, 62, 0.95),
+                  rgba(30, 58, 138, 0.95)
+                );
+                border: 2px solid #ff6b35;
+                border-radius: 20px;
+                padding: 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                height: 100%;
+              "
+            >
+              <img
+                src="images/advertisement4.jpeg"
+                alt="SmartPLAY IPTV - Teste Grátis"
+                style="
+                  width: 100%;
+                  height: auto;
+                  border-radius: 15px;
+                  margin-bottom: 15px;
+                "
+              />
+              <h4 style="color: #ffd700; font-weight: 700; margin-bottom: 10px">
+                Teste Grátis!
+              </h4>
+              <p style="color: #ccc">Experimente agora sem compromisso!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contato">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="contact-box">
+              <h2
+                style="
+                  font-size: 3rem;
+                  font-weight: 900;
+                  text-transform: uppercase;
+                  margin-bottom: 30px;
+                  background: linear-gradient(90deg, #ff6b35, #ffd700);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+              >
+                👉 ME CHAMA AGORA E LIBERO SEU TESTE!
+              </h2>
+              <p style="font-size: 1.4rem; margin-bottom: 40px; color: #ccc">
+                Solicite seu teste gratuito sem compromisso pelo WhatsApp!
+              </p>
+              <div
+                style="
+                  background: rgba(16, 185, 129, 0.1);
+                  border: 2px solid #10b981;
+                  border-radius: 20px;
+                  padding: 30px;
+                  margin-bottom: 40px;
+                "
+              >
+                <h3
+                  style="
+                    font-size: 1.8rem;
+                    font-weight: 900;
+                    margin-bottom: 20px;
+                    color: #10b981;
+                  "
+                >
+                  <i class="fas fa-gift"></i> BENEFÍCIOS DO TESTE GRÁTIS:
+                </h3>
+                <div style="text-align: left; font-size: 1.2rem">
+                  <div style="margin-bottom: 10px">
+                    <i class="fas fa-check-circle" style="color: #10b981"></i>
+                    Acesso total a todos os canais
+                  </div>
+                  <div style="margin-bottom: 10px">
+                    <i class="fas fa-check-circle" style="color: #10b981"></i>
+                    Teste de qualidade e estabilidade
+                  </div>
+                  <div style="margin-bottom: 10px">
+                    <i class="fas fa-check-circle" style="color: #10b981"></i>
+                    Suporte durante o teste
+                  </div>
+                  <div>
+                    <i class="fas fa-check-circle" style="color: #10b981"></i>
+                    Sem necessidade de cartão
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://wa.me/555192387622?text=Vim%20pelo site%20e%20quero%20solicitar%20o%20teste%20gr%C3%A1tis!"
+                target="_blank"
+                class="whatsapp-button"
+                style="
+                  display: inline-block;
+                  width: 100%;
+                  text-align: center;
+                  text-decoration: none;
+                "
+              >
+                <i class="fab fa-whatsapp"></i>
+                SOLICITAR TESTE GRÁTIS AGORA
+              </a>
+              <p style="margin-top: 30px; color: #ffd700; font-size: 1.2rem">
+                <i class="fas fa-headset"></i> Atendimento Online via Whatsapp
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p style="font-size: 1.2rem; margin-bottom: 10px">
+          &copy; 2024 SmartPLAY PROVEDOR IPTV - Todos os direitos reservados
+        </p>
+        <p style="color: #ff6b35; font-weight: bold">
+          A MELHOR EXPERIÊNCIA IPTV DO BRASIL
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
